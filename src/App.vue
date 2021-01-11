@@ -9,7 +9,7 @@
         >
           <p class="text-gray-700 font-semibold font-sans tracking-wide text-sm">{{column.title}}</p>
           <!-- Draggable component comes from vuedraggable. It provides drag & drop functionality -->
-          <draggable :list="column.tasks" :animation="200" ghost-class="ghost-card" group="tasks">
+          <draggable :list="column.tasks" :animation="200" ghost-class="ghost-card" group="tasks" :component-data="getComponentData()"">
             <!-- Each element from here will be draggable and animated. Note :key is very important here to be unique both for draggable and animations to be smooth & consistent. -->
             <task-card
               v-for="(task) in column.tasks"
@@ -43,116 +43,72 @@ export default {
             {
               id: 1,
               title: "Add discount code to checkout page",
-              date: "Sep 14",
-              type: "Feature Request"
+              cliente: 'AGF Chapadão',
+              solicitante: 'Carlos',
+              due_date: "15/01/2021",
+              create_date: "22/12/2020",
+              avatar: 'https://scc4-floripa.s3.amazonaws.com/usuarios/avatar/thumbnail.1ae40db3-7d99-4a99-88de-6e8e30405ce5__SCC4__Cartoon%20Ricardo.PNG',
+              type: "Solicitação"
             },
             {
               id: 2,
               title: "Provide documentation on integrations",
-              date: "Sep 12"
+              cliente: 'AGF General Osorio',
+              solicitante: 'Eder',
+              due_date: "15/01/2021",
+              create_date: "22/12/2020",
+              avatar: 'https://scc4-floripa.s3.amazonaws.com/usuarios/avatar/thumbnail.3e7837bc-bffa-4a3c-b8c1-b76ca748ca41__SCC4__Cartoon%20Ismael.PNG',
+              type: "Bug"
             },
-            {
-              id: 3,
-              title: "Design shopping cart dropdown",
-              date: "Sep 9",
-              type: "Design"
-            },
-            {
-              id: 4,
-              title: "Add discount code to checkout page",
-              date: "Sep 14",
-              type: "Feature Request"
-            },
-            {
-              id: 5,
-              title: "Test checkout flow",
-              date: "Sep 15",
-              type: "QA"
-            }
+
           ]
         },
         {
-          title: "In Progress",
+          title: "Em Desenvolvimento",
           tasks: [
             {
               id: 6,
               title: "Design shopping cart dropdown",
-              date: "Sep 9",
-              type: "Design"
-            },
-            {
-              id: 7,
-              title: "Add discount code to checkout page",
-              date: "Sep 14",
-              type: "Feature Request"
-            },
-            {
-              id: 8,
-              title: "Provide documentation on integrations",
-              date: "Sep 12",
-              type: "Backend"
+              cliente: 'AGF Novo Mundo',
+              solicitante: 'Bruno',
+              due_date: "15/01/2021",
+              create_date: "22/12/2020",
+              avatar: 'https://scc4-floripa.s3.amazonaws.com/usuarios/avatar/thumbnail.80403e4d-b514-4a38-b6b8-7a9254e4fc3f__SCC4__Cartoon%20Fabio.PNG',
+              type: "Evolutiva"
             }
+
           ]
         },
         {
-          title: "Review",
+          title: "Code Review",
           tasks: [
-            {
-              id: 9,
-              title: "Provide documentation on integrations",
-              date: "Sep 12"
-            },
-            {
-              id: 10,
-              title: "Design shopping cart dropdown",
-              date: "Sep 9",
-              type: "Design"
-            },
-            {
-              id: 11,
-              title: "Add discount code to checkout page",
-              date: "Sep 14",
-              type: "Feature Request"
-            },
-            {
-              id: 12,
-              title: "Design shopping cart dropdown",
-              date: "Sep 9",
-              type: "Design"
-            },
-            {
-              id: 13,
-              title: "Add discount code to checkout page",
-              date: "Sep 14",
-              type: "Feature Request"
-            }
+
           ]
         },
         {
-          title: "Done",
+          title: "Finalizado",
           tasks: [
-            {
-              id: 14,
-              title: "Add discount code to checkout page",
-              date: "Sep 14",
-              type: "Feature Request"
-            },
-            {
-              id: 15,
-              title: "Design shopping cart dropdown",
-              date: "Sep 9",
-              type: "Design"
-            },
-            {
-              id: 16,
-              title: "Add discount code to checkout page",
-              date: "Sep 14",
-              type: "Feature Request"
-            }
+
           ]
         }
       ]
+
     };
+  },
+  methods: {
+    handleChange() {
+      console.log('changed');
+      console.log(this.columns[0]);
+    },
+
+
+    getComponentData() {
+      return {
+        on: {
+          change: this.handleChange,
+        }
+      };
+    }
   }
 };
 </script>
@@ -162,7 +118,7 @@ export default {
   min-width: 320px;
   width: 320px;
 }
-/* Unfortunately @apply cannot be setup in codesandbox, 
+/* Unfortunately @apply cannot be setup in codesandbox,
 but you'd use "@apply border opacity-50 border-blue-500 bg-gray-200" here */
 .ghost-card {
   opacity: 0.5;
