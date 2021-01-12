@@ -1,28 +1,28 @@
 <template>
-  <div id="app">
+  <v-app>
     <div class="flex justify-center">
       <div class="min-h-screen flex overflow-x-scroll py-12">
         <div
-          v-for="column in columns"
-          :key="column.title"
-          class="bg-gray-100 rounded-lg px-3 py-3 column-width rounded mr-4"
+            v-for="column in columns"
+            :key="column.title"
+            class="bg-gray-100 rounded-lg px-3 py-3 column-width rounded mr-4"
         >
           <p class="text-gray-700 font-semibold font-sans tracking-wide text-sm">{{column.title}}</p>
           <!-- Draggable component comes from vuedraggable. It provides drag & drop functionality -->
           <draggable :list="column.tasks" :animation="200" ghost-class="ghost-card" group="tasks" :component-data="getComponentData()"">
-            <!-- Each element from here will be draggable and animated. Note :key is very important here to be unique both for draggable and animations to be smooth & consistent. -->
-            <task-card
+          <!-- Each element from here will be draggable and animated. Note :key is very important here to be unique both for draggable and animations to be smooth & consistent. -->
+          <task-card
               v-for="(task) in column.tasks"
               :key="task.id"
               :task="task"
               class="mt-3 cursor-move"
-            ></task-card>
-            <!-- </transition-group> -->
+          ></task-card>
+          <!-- </transition-group> -->
           </draggable>
         </div>
       </div>
     </div>
-  </div>
+  </v-app>
 </template>
 
 <script>

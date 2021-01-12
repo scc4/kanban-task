@@ -7,22 +7,62 @@
           :src="task.avatar"
       >
     </div>
-    <div class="flex mt-1 justify-between items-center">
+    <div class="flex mt-1 justify-between">
       <span class="text-xs text-gray-600">{{ task.create_date }}</span>
       <badge color="yellow">{{task.cliente}} - {{task.solicitante}}</badge>
     </div>
-    <div class="flex mt-1 justify-between items-center">
-      <span class="text-xs text-gray-600">{{ task.due_date }}</span>
+    <div class="flex mt-1 justify-between">
+      <span class="text-xs  text-gray-600">{{ task.due_date }}</span>
       <badge v-if="task.type" :color="badgeColor">{{ task.type }}</badge>
     </div>
-    <v-icon>mdi-plus</v-icon>
-    <div class="flex mt-4 rounded-sm shadow">
-      <a href="#" class="inline-flex items-center justify-center px-3 py-1 border border-transparent text-base font-small text-indigo-600 bg-white ">
-        + Detalhes
-      </a>
-    </div>
+    <div>
+      <v-btn
+          class="mx-2"
+          fab
+          x-small
+          color="accent"
+          @click.stop="dialog = true"
+      >
+        <v-icon>
+          mdi-dots-horizontal
+        </v-icon>
+      </v-btn>
+      <v-dialog
+          v-model="dialog"
+          max-width="600"
 
-  </div>
+      >
+        <v-card>
+          <v-card-title class="headline">
+           {{task.id}} - {{task.title}}
+          </v-card-title>
+          <v-card-text>
+            Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
+          </v-card-text>
+          <v-card-text>
+            Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
+          </v-card-text>
+          <v-card-text>
+            Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
+          </v-card-text>
+          <v-card-text>
+            Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+
+            <v-btn
+                color="green darken-1"
+                text
+                @click="dialog = false"
+            >
+              Fechar
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </div>
+    </div>
 </template>
 <script>
 import Badge from "./Badge.vue";
@@ -35,6 +75,11 @@ export default {
     task: {
       type: Object,
       default: () => ({})
+    }
+  },
+  data () {
+    return {
+      dialog: false,
     }
   },
   computed: {
@@ -51,3 +96,8 @@ export default {
   }
 };
 </script>
+<style>
+.flex, .child-flex > * {
+  flex: none !important;
+}
+</style>
