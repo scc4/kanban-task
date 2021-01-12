@@ -1,2 +1,1 @@
-# kanban-task
-Created with CodeSandbox
+# kanban-ta
